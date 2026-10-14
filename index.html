@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Hive Group — Work Life Integration</title>
+<meta name="description" content="The Hive Group — a Penang-based insurance and financial advisory group helping young Malaysian families plan their future, and young Malaysians build a career with a predictable future.">
+<link rel="icon" href="img/64-screenshot-2024-08-02-at-12.11.34-pm.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --honey:#F5A623; --honey-deep:#D9860B; --honey-soft:#FFF4DF;
+    --ink:#16130F; --ink-2:#2A251E; --muted:#6B6358; --line:#E9E1D3;
+    --bg:#FFFCF6; --card:#FFFFFF;
+    --radius:18px; --max:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+  h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.1;letter-spacing:-.01em}
+  h2{font-size:clamp(2rem,4vw,3rem)}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--honey-deep)}
+  .eyebrow::before{content:"";width:12px;height:14px;background:var(--honey);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
+  .zh{color:var(--muted);font-size:.95rem}
+  section{padding:110px 0}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:999px;font-weight:600;font-size:.98rem;transition:transform .2s,background .2s,box-shadow .2s}
+  .btn-primary{background:var(--honey);color:var(--ink);box-shadow:0 10px 30px -10px rgba(245,166,35,.8)}
+  .btn-primary:hover{background:#FFB940;transform:translateY(-2px)}
+  .btn-ghost{border:1.5px solid rgba(255,255,255,.5);color:#fff}
+  .btn-ghost:hover{background:rgba(255,255,255,.12)}
+
+  /* NAV */
+  nav{position:fixed;inset:0 0 auto;z-index:50;transition:background .3s,box-shadow .3s}
+  nav.scrolled{background:rgba(22,19,15,.92);backdrop-filter:blur(10px);box-shadow:0 1px 0 rgba(255,255,255,.06)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:76px}
+  .brand{display:flex;align-items:center;gap:12px;color:#fff;font-weight:700;letter-spacing:.12em;font-size:.9rem}
+  .brand img{width:40px;height:40px;border-radius:10px;background:#fff}
+  .links{display:flex;gap:30px;color:rgba(255,255,255,.82);font-size:.93rem;font-weight:500}
+  .links a:hover{color:var(--honey)}
+  .nav-cta{padding:10px 20px;font-size:.9rem}
+  .burger{display:none;background:none;border:0;color:#fff;font-size:1.6rem;cursor:pointer}
+
+  /* HERO */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;padding:0 0 90px;color:#fff;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;background:url("img/2000-dsc02092_vsco.jpeg") center/cover}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(22,19,15,.55) 0%,rgba(22,19,15,.35) 40%,rgba(22,19,15,.92) 100%)}
+  .hero .wrap{position:relative;z-index:2;width:100%}
+  .hero h1{font-size:clamp(3rem,8vw,6.4rem);font-weight:700;max-width:11ch}
+  .hero h1 em{font-style:normal;color:var(--honey)}
+  .hero p{max-width:560px;margin:22px 0 34px;font-size:1.12rem;color:rgba(255,255,255,.85)}
+  .hero .actions{display:flex;flex-wrap:wrap;gap:14px}
+  .hero-tag{margin-bottom:22px;color:var(--honey)}
+
+  /* STATS */
+  .stats{background:var(--ink);color:#fff;padding:0}
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);border-left:1px solid rgba(255,255,255,.08)}
+  .stat{padding:44px 28px;border-right:1px solid rgba(255,255,255,.08)}
+  .stat b{display:block;font-family:Fraunces,serif;font-size:clamp(2.2rem,4vw,3.2rem);color:var(--honey);line-height:1}
+  .stat span{display:block;margin-top:10px;color:rgba(255,255,255,.7);font-size:.92rem}
+
+  /* ABOUT */
+  .about-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:70px;align-items:center}
+  .about-img{position:relative}
+  .about-img img{border-radius:var(--radius);aspect-ratio:4/5;object-fit:cover;width:100%}
+  .about-img .badge{position:absolute;right:-22px;bottom:34px;background:var(--honey);color:var(--ink);padding:20px 24px;border-radius:16px;font-weight:700;max-width:220px;box-shadow:0 20px 40px -18px rgba(0,0,0,.4)}
+  .about-img .badge small{display:block;font-weight:500;font-size:.82rem;margin-top:4px}
+  .about h2{margin:14px 0 20px}
+  .about .lead{font-size:1.1rem;color:var(--ink-2)}
+  .mv{display:grid;gap:16px;margin-top:32px}
+  .mv-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px 26px}
+  .mv-card h3{font-size:1.25rem;margin-bottom:8px;display:flex;gap:10px;align-items:baseline}
+  .mv-card h3 small{font-family:Inter;font-size:.85rem;color:var(--honey-deep);font-weight:600}
+  .mv-card p{color:var(--muted)}
+
+  /* SERVICES */
+  .services{background:var(--honey-soft)}
+  .sec-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:52px;flex-wrap:wrap}
+  .sec-head p{max-width:440px;color:var(--muted)}
+  .sec-head h2{margin-top:12px}
+  .svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .svc{background:#fff;border-radius:var(--radius);padding:30px 26px;border:1px solid var(--line);transition:transform .25s,box-shadow .25s}
+  .svc:hover{transform:translateY(-6px);box-shadow:0 24px 50px -24px rgba(217,134,11,.45)}
+  .hex{width:52px;height:58px;background:var(--honey);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);display:grid;place-items:center;font-size:1.4rem;margin-bottom:22px}
+  .svc h3{font-size:1.25rem;margin-bottom:10px}
+  .svc p{color:var(--muted);font-size:.95rem}
+
+  /* AFFILIATES */
+  .aff-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+  .aff{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px 22px;display:flex;flex-direction:column}
+  .aff .logo{height:64px;display:flex;align-items:center;margin-bottom:18px}
+  .aff .logo img{max-height:52px;max-width:100%;object-fit:contain}
+  .aff h3{font-family:Inter;font-size:1rem;font-weight:700}
+  .aff .tag{font-size:.75rem;font-weight:600;color:var(--honey-deep);text-transform:uppercase;letter-spacing:.08em;margin:2px 0 10px}
+  .aff p{font-size:.88rem;color:var(--muted)}
+
+  /* CAREERS */
+  .careers{background:var(--ink);color:#fff}
+  .careers .sec-head p{color:rgba(255,255,255,.65)}
+  .perks{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:46px}
+  .perk{padding:9px 16px;border:1px solid rgba(245,166,35,.4);border-radius:999px;font-size:.88rem;color:var(--honey)}
+  .track-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .track{background:var(--ink-2);border:1px solid rgba(255,255,255,.07);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column}
+  .track img{aspect-ratio:16/11;object-fit:cover;width:100%}
+  .track-body{padding:26px;display:flex;flex-direction:column;flex:1}
+  .track h3{font-size:1.5rem;margin-bottom:6px}
+  .track .for{color:var(--honey);font-size:.88rem;font-weight:600;margin-bottom:16px}
+  .track ul{list-style:none;display:grid;gap:9px;color:rgba(255,255,255,.75);font-size:.92rem;margin-bottom:24px}
+  .track li{padding-left:22px;position:relative}
+  .track li::before{content:"";position:absolute;left:0;top:.55em;width:9px;height:10px;background:var(--honey);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
+  .track .btn{margin-top:auto;align-self:flex-start;padding:12px 20px;font-size:.9rem}
+
+  /* PLAY */
+  .countries{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+  .countries span{background:#fff;border:1px solid var(--line);padding:7px 14px;border-radius:999px;font-size:.85rem;font-weight:500}
+  .gallery{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;gap:14px}
+  .gallery img{width:100%;height:100%;object-fit:cover;border-radius:14px;transition:transform .4s}
+  .gallery figure{overflow:hidden;border-radius:14px}
+  .gallery figure:hover img{transform:scale(1.06)}
+  .g-tall{grid-row:span 2}
+  .g-wide{grid-column:span 2}
+
+  /* STAGE */
+  .stage{background:var(--honey-soft)}
+  .stage-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:60px;align-items:center}
+  .timeline{list-style:none;position:relative;margin-top:34px;padding-left:28px;border-left:2px dashed rgba(217,134,11,.45)}
+  .timeline li{position:relative;padding:0 0 22px}
+  .timeline li::before{content:"";position:absolute;left:-37px;top:4px;width:16px;height:18px;background:var(--honey);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
+  .timeline b{font-family:Fraunces,serif;font-size:1.2rem}
+  .timeline span{display:block;color:var(--muted);font-size:.9rem}
+  .stage-photos{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .stage-photos img{border-radius:var(--radius);width:100%;height:100%;object-fit:cover}
+  .stage-photos .big{grid-column:span 2;aspect-ratio:16/9}
+  .stage-photos .sm{aspect-ratio:1}
+
+  /* TEAM */
+  .founders{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:22px}
+  .founder{display:flex;gap:22px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+  .founder img{width:120px;height:120px;border-radius:14px;object-fit:cover}
+  .founder h3{font-size:1.5rem}
+  .role{color:var(--honey-deep);font-weight:600;font-size:.88rem}
+  .team-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+  .member{text-align:center}
+  .member img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:14px;margin-bottom:10px;background:var(--line);filter:grayscale(.25);transition:filter .3s}
+  .member:hover img{filter:none}
+  .member b{display:block;font-size:.95rem}
+  .member .role{font-size:.8rem}
+
+  /* CTA / CONTACT */
+  .cta{position:relative;color:#fff;overflow:hidden;padding:120px 0}
+  .cta-bg{position:absolute;inset:0;background:url("img/2000-dsc03726.jpg") center/cover}
+  .cta::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,rgba(22,19,15,.95) 30%,rgba(22,19,15,.55))}
+  .cta .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center}
+  .cta h2{font-size:clamp(2.4rem,5vw,4rem)}
+  .cta h2 em{font-style:normal;color:var(--honey)}
+  .cta p{color:rgba(255,255,255,.8);margin:18px 0 30px;max-width:480px}
+  .loc{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px);border-radius:var(--radius);padding:24px;margin-bottom:14px}
+  .loc .tag{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--honey);font-weight:700}
+  .loc h3{font-size:1.35rem;margin:6px 0 4px}
+  .loc p{margin:0;font-size:.92rem;color:rgba(255,255,255,.7)}
+
+  footer{background:var(--ink);color:rgba(255,255,255,.6);padding:40px 0;font-size:.88rem}
+  .foot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  footer a:hover{color:var(--honey)}
+
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+  @media (max-width:1024px){
+    .svc-grid{grid-template-columns:repeat(2,1fr)}
+    .aff-grid{grid-template-columns:repeat(3,1fr)}
+    .team-grid{grid-template-columns:repeat(4,1fr)}
+    .gallery{grid-template-columns:repeat(3,1fr)}
+  }
+  @media (max-width:860px){
+    section{padding:80px 0}
+    .wrap{padding:0 16px}
+    .links,.nav-cta{display:none}
+    .burger{display:block}
+    .links.open{display:flex;flex-direction:column;position:absolute;top:76px;left:0;right:0;background:var(--ink);padding:20px 16px;gap:18px}
+    .stats-grid{grid-template-columns:repeat(2,1fr)}
+    .stat{padding:30px 18px;border-bottom:1px solid rgba(255,255,255,.08)}
+    .about-grid,.stage-grid,.cta .wrap,.founders{grid-template-columns:1fr;gap:40px}
+    .about-img .badge{right:12px}
+    .track-grid{grid-template-columns:1fr}
+    .aff-grid{grid-template-columns:repeat(2,1fr)}
+    .team-grid{grid-template-columns:repeat(3,1fr)}
+    .gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:170px}
+    .g-wide{grid-column:span 2}
+  }
+  @media (max-width:520px){
+    .svc-grid,.aff-grid{grid-template-columns:1fr}
+    .founder img{width:90px;height:90px}
+    .hero{padding-bottom:60px}
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wrap nav-in">
+    <a href="#top" class="brand"><img src="img/96-screenshot-2024-08-02-at-12.11.34-pm.png" alt="The Hive Group logo">THE HIVE GROUP</a>
+    <div class="links" id="links">
+      <a href="#about">About</a><a href="#affiliates">Affiliates</a><a href="#careers">Career</a><a href="#play">Play</a><a href="#stage">Stage</a><a href="#team">Team</a><a href="#contact">Contact</a>
+    </div>
+    <a href="mailto:shoanlee7233@gmail.com?subject=Join%20The%20Hive" class="btn btn-primary nav-cta">Join us</a>
+    <button class="burger" id="burger" aria-label="Open menu">☰</button>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="wrap">
+    <div class="eyebrow hero-tag">Penang · Malaysia</div>
+    <h1>Work Life <em>Integration.</em></h1>
+    <p>A financial advisory group helping young Malaysian families plan for their future, and young Malaysians build careers grounded in leadership, friendship, and growth, free from negative politics.</p>
+    <div class="actions">
+      <a href="mailto:shoanlee7233@gmail.com?subject=Career%20enquiry%20-%20The%20Hive" class="btn btn-primary">Start your career →</a>
+      <a href="#about" class="btn btn-ghost">Discover The Hive</a>
+    </div>
+  </div>
+</header>
+
+<div class="stats">
+  <div class="wrap stats-grid">
+    <div class="stat"><b data-count="6000">6,000</b><span>+ manpower nationwide</span></div>
+    <div class="stat"><b data-count="30">30</b><span>+ agencies in major cities</span></div>
+    <div class="stat"><b>RM1M</b><span>Annual sales target, a million-dollar business group</span></div>
+    <div class="stat"><b data-count="11">11</b><span>+ countries explored on incentive trips</span></div>
+  </div>
+</div>
+
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-img reveal">
+      <img src="img/1200-2a8b7b46-add2-4b61-afbc-1e362321f847.jpeg" alt="The Hive team at Infinity8 Reserve, GeorgeTown" loading="lazy">
+      <div class="badge">The Hive @ Infinity8<small>Reserve GeorgeTown, Penang</small></div>
+    </div>
+    <div class="reveal">
+      <span class="eyebrow">About us</span>
+      <h2>Where careers grow and families are protected.</h2>
+      <p class="lead">We encourage leadership and friendship at The Hive Group. As insurance moves forward with online systems, AI, and apps, we pair modern tools with human advice to deliver complete customer service.</p>
+      <div class="mv">
+        <div class="mv-card">
+          <h3>Mission <small>使命</small></h3>
+          <p>Help young Malaysian families plan for their future by partnering with insurance companies, and provide personalised risk management for corporate and legacy planning.</p>
+        </div>
+        <div class="mv-card">
+          <h3>Vision <small>愿景</small></h3>
+          <p>Provide an entrepreneurship program that helps young Malaysians find a career with a predictable future.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="eyebrow">What we do</span><h2>Planning for every stage of life.</h2></div>
+      <p>We keep to industry standards that meet our clients' requirements, and our awards are a benchmark for our business and service standards.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc reveal"><div class="hex">🛡️</div><h3>Family protection</h3><p>Life and general insurance plans designed around young Malaysian families.</p></div>
+      <div class="svc reveal"><div class="hex">📊</div><h3>Risk management</h3><p>Personalised risk management services for individuals and corporates.</p></div>
+      <div class="svc reveal"><div class="hex">📜</div><h3>Legacy planning</h3><p>Wills, trusts, and estate planning so your wealth reaches the people you love.</p></div>
+      <div class="svc reveal"><div class="hex">🚀</div><h3>Entrepreneurship</h3><p>Training and coaching that takes fresh graduates to award-winning producers and leaders.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="affiliates">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="eyebrow">Affiliates</span><h2>Backed by trusted partners.</h2></div>
+      <p>We work with established names in life insurance, general insurance, and legacy planning to give clients complete coverage.</p>
+    </div>
+    <div class="aff-grid">
+      <div class="aff reveal"><div class="logo"><img src="img/400-ge-logo.svg_.png" alt="Great Eastern" loading="lazy"></div><h3>Great Eastern Life</h3><div class="tag">Life insurance</div><p>Founded in 1908. Over S$100B in assets and 10M+ policyholders.</p></div>
+      <div class="aff reveal"><div class="logo"><img src="img/400-sg-logo.png" alt="Super Group" loading="lazy"></div><h3>Super Group</h3><div class="tag">Training &amp; growth</div><p>The largest single cluster group, with 5,000+ active members and 30+ agencies.</p></div>
+      <div class="aff reveal"><div class="logo"><img src="img/400-msig.png" alt="MSIG" loading="lazy"></div><h3>MSIG</h3><div class="tag">General insurance</div><p>Personal accident and liability coverage for homes and vehicles.</p></div>
+      <div class="aff reveal"><div class="logo"><img src="img/400-cropped-cropped-rockwills-logo.png" alt="Rockwills" loading="lazy"></div><h3>Rockwills</h3><div class="tag">Will &amp; trust</div><p>A market leader in professional will-writing and estate planning in Malaysia.</p></div>
+      <div class="aff reveal"><div class="logo"><img src="img/400-uneedwill-logo-tm.png" alt="UneedWill" loading="lazy"></div><h3>UneedWill</h3><div class="tag">Digital wills</div><p>A digital will platform, with documents drafted by experienced legacy advisors.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="careers" id="careers">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="eyebrow">Career</span><h2>Not your typical 9-to-5.</h2></div>
+      <p>A fun, dynamic, and adventurous place to work. We value discipline, teamwork, a positive attitude, creativity, and innovation.</p>
+    </div>
+    <div class="perks reveal">
+      <span class="perk">✈ Travel incentives</span><span class="perk">↗ Career progression</span><span class="perk">🎓 Comprehensive training</span><span class="perk">💰 Performance commission</span><span class="perk">⏱ Flexible schedule</span>
+    </div>
+    <div class="track-grid">
+      <div class="track reveal">
+        <img src="img/900-dsc00345-1.jpg" alt="Full-timers at The Hive" loading="lazy">
+        <div class="track-body">
+          <h3>Full-timer</h3><div class="for">Diploma or degree holders</div>
+          <ul><li>SPM holders considered based on results</li><li>Sales experience is a strong match</li><li>Leadership in school or university associations</li><li>Proactive learner, responsive on WhatsApp</li></ul>
+          <a class="btn btn-primary" href="mailto:shoanlee7233@gmail.com?subject=Full-timer%20application%20-%20The%20Hive">Send your CV</a>
+        </div>
+      </div>
+      <div class="track reveal">
+        <img src="img/900-dsc02084_vsco.jpg" alt="Hybrid team members" loading="lazy">
+        <div class="track-body">
+          <h3>Hybrid / Remote</h3><div class="for">Build a sustainable passive income</div>
+          <ul><li>Diploma or degree preferred</li><li>Able to manage your own schedule</li><li>Hybrid or remote work, with conditions</li><li>Weekly meet-ups and updates</li></ul>
+          <a class="btn btn-primary" href="mailto:shoanlee7233@gmail.com?subject=Hybrid%20application%20-%20The%20Hive">Send your CV</a>
+        </div>
+      </div>
+      <div class="track reveal">
+        <img src="img/900-dsc00337.jpg" alt="Interns training" loading="lazy">
+        <div class="track-body">
+          <h3>Intern</h3><div class="for">Hands-on training for students</div>
+          <ul><li>Structured course or independent path</li><li>Earn a professional title before graduating</li><li>Business, Finance, Marketing, Banking, Content &amp; Social Media majors</li><li>Interviews at our Penang office</li></ul>
+          <a class="btn btn-primary" href="mailto:shoanlee7233@gmail.com?subject=Internship%20application%20-%20The%20Hive">Send your CV</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="play">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">Play</span><h2>Learning with the best, around the world.</h2>
+        <div class="countries">
+          <span>🇷🇺 Russia</span><span>🇿🇦 South Africa</span><span>🇰🇿 Kazakhstan</span><span>🇹🇭 Thailand</span><span>🇮🇩 Indonesia</span><span>🇨🇳 China</span><span>🇹🇼 Taiwan</span><span>🇦🇹 Austria</span><span>🇹🇷 Istanbul</span><span>🇨🇿 Prague</span><span>🇭🇺 Budapest</span>
+        </div>
+      </div>
+      <p>Incentive trips take us beyond Malaysia to explore further and learn from the best along the way.</p>
+    </div>
+    <div class="gallery reveal">
+      <figure class="g-wide"><img src="img/1200-dsc07156.jpg" alt="Incentive trip" loading="lazy"></figure>
+      <figure class="g-tall"><img src="img/700-img_8209.jpg" alt="Incentive trip" loading="lazy"></figure>
+      <figure><img src="img/700-img_8550.jpg" alt="Incentive trip" loading="lazy"></figure>
+      <figure><img src="img/700-img_7540.jpg" alt="Incentive trip" loading="lazy"></figure>
+      <figure class="g-tall"><img src="img/700-dsc02624_vsco.jpg" alt="Incentive trip" loading="lazy"></figure>
+      <figure><img src="img/700-dji_fly_20230927_181518_470_1695809446053_photo.jpg" alt="Aerial view from incentive trip" loading="lazy"></figure>
+      <figure class="g-wide"><img src="img/1200-dsc05906.jpg" alt="Incentive trip" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+
+<section class="stage" id="stage">
+  <div class="wrap stage-grid">
+    <div class="reveal">
+      <span class="eyebrow">Stage</span>
+      <h2>Hard work, recognised.</h2>
+      <p style="color:var(--muted);margin-top:16px">Our awards nights and forums put achievers in the spotlight, and our knowledge-sharing events help everyone learn from experience.</p>
+      <ul class="timeline">
+        <li><b>Achievers Night</b><span>2019</span></li>
+        <li><b>Achievers Night</b><span>2021</span></li>
+        <li><b>Star Producer Forum</b><span>2023</span></li>
+        <li><b>Awards Presentation</b><span>2023 · 2024</span></li>
+        <li><b>Charity Night</b><span>2025</span></li>
+      </ul>
+    </div>
+    <div class="stage-photos reveal">
+      <img class="big" src="img/1200-d029de53-b315-4218-9b84-f03ee7afd5ce.jpg" alt="Awards night on stage" loading="lazy">
+      <img class="sm" src="img/600-award-458.jpeg" alt="Award presentation" loading="lazy">
+      <img class="sm" src="img/600-dsc00072.jpg" alt="Forum event" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section id="team">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="eyebrow">Team</span><h2>One hive, one mission.</h2></div>
+      <p>Business partners from many industries, each an expert in their field, united under a single mission.</p>
+    </div>
+    <div class="founders">
+      <div class="founder reveal"><img src="img/300-shoan.jpg" alt="Shoan Lee" loading="lazy"><div><h3>Shoan Lee</h3><div class="role">GM · Founder</div></div></div>
+      <div class="founder reveal"><img src="img/300-cannas-copy.jpg" alt="Cannas Lee" loading="lazy"><div><h3>Cannas Lee</h3><div class="role">GM · Founder</div></div></div>
+    </div>
+    <div class="team-grid reveal" id="team-grid"></div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="cta-bg"></div>
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Join the hive</span>
+      <h2>Your predictable future <em>starts here.</em></h2>
+      <p>Whether you want to protect your family or build a career you're proud of, we'd love to meet you in GeorgeTown.</p>
+      <div style="display:flex;gap:14px;flex-wrap:wrap">
+        <a href="mailto:shoanlee7233@gmail.com?subject=Hello%20The%20Hive" class="btn btn-primary">Send us your CV →</a>
+        <a href="https://www.instagram.com/thehive.my/" target="_blank" rel="noopener" class="btn btn-ghost">Follow @thehive.my</a>
+      </div>
+    </div>
+    <div>
+      <div class="loc"><div class="tag">Headquarters</div><h3>The Hive @ GeorgeTown</h3><p>Infinity8 Reserve co-working, Beach Street, GeorgeTown, Penang</p></div>
+      <div class="loc"><div class="tag">Branch</div><h3>The Hive @ Sunway Business Park</h3><p>Penang, Malaysia</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span>© <span id="yr"></span> THE HIVE CONSULTANCY (NS0253167-A)</span>
+    <a href="https://www.instagram.com/thehive.my/" target="_blank" rel="noopener">Instagram ↗</a>
+  </div>
+</footer>
+
+<script>
+  const IMG = f => `img/300-${f}`;
+  const team = [
+    ["Ho Kah Fai","MDRT","168443538_10158406901559565_4324688622033387467_n-copy.jpg"],
+    ["Jim Khor","MDRT","jim_page-copy.jpg"],
+    ["Darren Teoh","UM","darren_page-copy.jpg"],
+    ["Enter Lau","Sales Manager","enter_page-copy.jpg"],
+    ["Felicia Chew","Sales Manager","felicia_page-copy.jpg"],
+    ["Leon Koay","Partner","leon.jpg"],
+    ["Kee Zhun Wei","Partner","zhunwei.jpg"],
+    ["Jeff Tan","Partner","jeff.jpg"],
+    ["Kim Khor","Partner","kim_page-copy.jpg"],
+    ["Jeek","Partner","jeek_page.jpg"],
+    ["Jun Yi","Partner","junyi.jpg"],
+    ["Annie","Partner","screenshot-2025-10-03-at-12.36.35-am.png"]
+  ];
+  document.getElementById('team-grid').innerHTML = team.map(([n,r,f]) =>
+    `<div class="member"><img src="${IMG(f)}" alt="${n}" loading="lazy"><b>${n}</b><span class="role">${r}</span></div>`).join('');
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', scrollY > 40);
+  addEventListener('scroll', onScroll); onScroll();
+
+  const links = document.getElementById('links');
+  document.getElementById('burger').onclick = () => links.classList.toggle('open');
+  links.querySelectorAll('a').forEach(a => a.onclick = () => links.classList.remove('open'));
+
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('in'); io.unobserve(e.target);
+  }), {threshold: .12});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const cio = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target, end = +el.dataset.count; cio.unobserve(el);
+    if (reduce) return;
+    const t0 = performance.now();
+    const tick = t => { const p = Math.min((t - t0) / 1400, 1);
+      el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3))).toLocaleString();
+      if (p < 1) requestAnimationFrame(tick); };
+    requestAnimationFrame(tick);
+  }), {threshold: .5});
+  document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
+</script>
+</body>
+</html>
